@@ -35,11 +35,9 @@
 						<div class="card-title mb-0">
 							<h5 class="m-0 me-2">Informasi Stok Produk</h5>
 						</div>
-
 					</div>
 					<div class="card-body">
 						<div class="d-flex justify-content-between align-items-center mb-3">
-
 						</div>
 						<ul class="p-0 m-0">
 							<?php
@@ -75,7 +73,19 @@
 				</div>
 			</div>
 			<!--/ Order Statistics -->
-
+			<div class="col-md-6 col-lg-8 col-xl-8 order-0 mb-4">
+				<div class="card h-100">
+					<div class="card-header d-flex align-items-center justify-content-between pb-0">
+						<div class="card-title mb-0">
+							<h5 class="m-0 me-2">Grafik Transaksi</h5>
+						</div>
+					</div>
+					<div class="card-body">
+						<canvas id="transaksi" height="100"></canvas>
+					</div>
+				</div>
+			</div>
 		</div>
+
 	</div>
 	<!-- / Content -->

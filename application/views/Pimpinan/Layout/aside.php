@@ -71,22 +71,22 @@
 							<div data-i18n="Basic">Laporan Transaksi</div>
 						</a>
 					</li>
-					<!-- <li class="menu-item <?php if ($this->uri->segment(1) == 'Pimpinan' && $this->uri->segment(2) == 'cAnalisis_Produk') {
+					<!--  <li class="menu-item <?php if ($this->uri->segment(1) == 'Pimpinan' && $this->uri->segment(2) == 'cAnalisis_Produk') {
 													echo 'active';
 												}  ?>">
 						<a href="<?= base_url('Pimpinan/cAnalisis_Produk') ?>" class="menu-link">
 							<i class='menu-icon tf-icons bx bx-qr'></i>
 							<div data-i18n="Basic">Analisis Produk</div>
 						</a>
-					</li>
-					<li class="menu-item <?php if ($this->uri->segment(1) == 'Pimpinan' && $this->uri->segment(2) == 'cAnalisis_member') {
+					</li> -->
+					<li class="menu-item <?php if ($this->uri->segment(1) == 'Pimpinan' && $this->uri->segment(2) == 'cLaporan_analisis') {
 												echo 'active';
 											}  ?>">
-						<a href="<?= base_url('Pimpinan/cAnalisis_member') ?>" class="menu-link">
+						<a href="<?= base_url('Pimpinan/cLaporan_analisis') ?>" class="menu-link">
 							<i class="menu-icon tf-icons bx bx-user"></i>
 							<div data-i18n="Basic">Analisis Pelanggan</div>
 						</a>
-					</li> -->
+					</li>
 
 
 					<!-- Forms & Tables -->

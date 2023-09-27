@@ -105,6 +105,7 @@ class cStatusOrder extends CI_Controller
 
 		$centroid1 = round(sqrt((pow(($e_recency[1] - $e_recency[0]), 2)) + (pow($e_frequecy[1] - $e_frequecy[0], 2)) + (pow($e_monetary[1] - $e_monetary[0], 2))), 3);
 		$centroid2 = round(sqrt((pow(($e_recency[0] - $e_recency[1]), 2)) + (pow($e_frequecy[0] - $e_frequecy[1], 2)) + (pow($e_monetary[0] - $e_monetary[1], 2))), 3);
+		$centroid3 = round(sqrt((pow(($e_recency[0] - $e_recency[2]), 2)) + (pow($e_frequecy[0] - $e_frequecy[2], 2)) + (pow($e_monetary[0] - $e_monetary[2], 2))), 3);
 		// echo '<br>' . $centroid1;
 		// echo '<br>' . $centroid2;
 
@@ -112,12 +113,14 @@ class cStatusOrder extends CI_Controller
 		foreach ($variabel['all'] as $key => $value) {
 			$centroid_next1 = round(sqrt((pow(($value->recency - $e_recency[0]), 2)) + (pow($value->frequency - $e_frequecy[0], 2)) + (pow($value->monetary - $e_monetary[0], 2))), 3);
 			$centroid_next2 = round(sqrt((pow(($value->recency - $e_recency[1]), 2)) + (pow($value->frequency - $e_frequecy[1], 2)) + (pow($value->monetary - $e_monetary[1], 2))), 3);
+			$centroid_next3 = round(sqrt((pow(($value->recency - $e_recency[2]), 2)) + (pow($value->frequency - $e_frequecy[2], 2)) + (pow($value->monetary - $e_monetary[2], 2))), 3);
 
 			if ($centroid1 >= $centroid_next1) {
 				$status = 0;
-			}
-			if ($centroid2 >= $centroid_next2) {
+			} else if ($centroid2 >= $centroid_next2) {
 				$status = 1;
+			} else if ($centroid3 >= $centroid_next3) {
+				$status = 2;
 			}
 			$status_member = array(
 				'member' => $status
