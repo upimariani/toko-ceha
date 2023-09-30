@@ -45,11 +45,8 @@
 							?>
 								<li class="d-flex mb-4 pb-1">
 									<div class="avatar flex-shrink-0 me-3">
-										<span class="avatar-initial rounded bg-label-<?php if ($value->stok < 5) {
-																							echo 'danger';
-																						} else {
-																							echo 'primary';
-																						} ?>"></span>
+										<img src="<?= base_url('asset/foto-produk/' . $value->gambar) ?>">
+										</span>
 									</div>
 									<div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
 										<div class="me-2">

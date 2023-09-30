@@ -79,7 +79,11 @@
 							<thead>
 								<tr>
 									<th>Nama Pelanggan </th>
+									<th>Alamat </th>
 									<th>No Telepon</th>
+									<th>Recency</th>
+									<th>Frequency</th>
+									<th>Monetary</th>
 									<th>Level Member</th>
 								</tr>
 							</thead>
@@ -89,7 +93,11 @@
 								?>
 									<tr>
 										<td><?= $value->nama_konsumen ?></td>
+										<td><?= $value->alamat_konsumen ?></td>
 										<td><?= $value->no_hp_konsumen ?></td>
+										<td><?= $value->recency ?></td>
+										<td><?= $value->frequency ?></td>
+										<td>Rp. <?= number_format($value->monetary)   ?></td>
 										<td><?php
 											if ($value->member == '2') {
 												echo ' <span class="badge bg-success">Gold</span>';

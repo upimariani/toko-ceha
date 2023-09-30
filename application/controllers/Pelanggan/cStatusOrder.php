@@ -71,56 +71,59 @@ class cStatusOrder extends CI_Controller
 			$var_recency[] = $value->recency;
 			$var_frequency[] = $value->frequency;
 			$var_monetary[] = $value->monetary;
-			// echo '<br>Recency: ' . $value->recency;
-			// echo '<br>Frequency: ' . $value->frequency;
-			// echo '<br>Monetary: ' . $value->monetary;
+			echo '<br>Recency: ' . $value->recency;
+			echo '<br>Frequency: ' . $value->frequency;
+			echo '<br>Monetary: ' . $value->monetary;
 		}
 
-		// echo '<br>';
-		$max_recency = max($var_recency);
-		$max_frequency = max($var_frequency);
-		$max_monetary = max($var_monetary);
-		// echo $max_recency . '<br>';
-		// echo $max_frequency . '<br>';
-		// echo $max_monetary . '<br>';
+		// // echo '<br>';
+		// $max_recency = max($var_recency);
+		// $max_frequency = max($var_frequency);
+		// $max_monetary = max($var_monetary);
+		// // echo $max_recency . '<br>';
+		// // echo $max_frequency . '<br>';
+		// // echo $max_monetary . '<br>';
 
-		// echo '<br>';
-		$rn = $var_recency[0] / $max_recency;
-		$fn = $var_frequency[0] / $max_frequency;
-		$mn = $var_monetary[0] / $max_monetary;
-		// echo $var_recency[0] . '|' . $rn . '<br>';
-		// echo $var_frequency[0] . '|' . $fn . '<br>';
-		// echo $var_monetary[0] . '|' . $mn . '<br>';
+		// // echo '<br>';
+		// $rn = $var_recency[0] / $max_recency;
+		// $fn = $var_frequency[0] / $max_frequency;
+		// $mn = $var_monetary[0] / $max_monetary;
+		// // echo $var_recency[0] . '|' . $rn . '<br>';
+		// // echo $var_frequency[0] . '|' . $fn . '<br>';
+		// // echo $var_monetary[0] . '|' . $mn . '<br>';
 
 
 		//menentukan rumus euclidean Distance
 		$e_recency = array();
 		$e_frequecy = array();
 		$e_monetary = array();
-		foreach ($variabel['limit'] as $key => $value) {
+		foreach ($variabel['centroid'] as $key => $value) {
 			$e_recency[] = $value->recency;
 			$e_frequecy[] = $value->frequency;
 			$e_monetary[] = $value->monetary;
 		}
 
-		$centroid1 = round(sqrt((pow(($e_recency[1] - $e_recency[0]), 2)) + (pow($e_frequecy[1] - $e_frequecy[0], 2)) + (pow($e_monetary[1] - $e_monetary[0], 2))), 3);
-		$centroid2 = round(sqrt((pow(($e_recency[0] - $e_recency[1]), 2)) + (pow($e_frequecy[0] - $e_frequecy[1], 2)) + (pow($e_monetary[0] - $e_monetary[1], 2))), 3);
-		$centroid3 = round(sqrt((pow(($e_recency[0] - $e_recency[2]), 2)) + (pow($e_frequecy[0] - $e_frequecy[2], 2)) + (pow($e_monetary[0] - $e_monetary[2], 2))), 3);
-		// echo '<br>' . $centroid1;
-		// echo '<br>' . $centroid2;
+		// $centroid1 = round(sqrt((pow(($e_recency[1] - $e_recency[0]), 2)) + (pow($e_frequecy[1] - $e_frequecy[0], 2)) + (pow($e_monetary[1] - $e_monetary[0], 2))), 3);
+		// $centroid2 = round(sqrt((pow(($e_recency[0] - $e_recency[1]), 2)) + (pow($e_frequecy[0] - $e_frequecy[1], 2)) + (pow($e_monetary[0] - $e_monetary[1], 2))), 3);
+		// $centroid3 = round(sqrt((pow(($e_recency[2] - $e_recency[2]), 2)) + (pow($e_frequecy[0] - $e_frequecy[2], 2)) + (pow($e_monetary[0] - $e_monetary[2], 2))), 3);
+		// // echo '<br>' . $centroid1;
+		// // echo '<br>' . $centroid2;
 
 
 		foreach ($variabel['all'] as $key => $value) {
-			$centroid_next1 = round(sqrt((pow(($value->recency - $e_recency[0]), 2)) + (pow($value->frequency - $e_frequecy[0], 2)) + (pow($value->monetary - $e_monetary[0], 2))), 3);
-			$centroid_next2 = round(sqrt((pow(($value->recency - $e_recency[1]), 2)) + (pow($value->frequency - $e_frequecy[1], 2)) + (pow($value->monetary - $e_monetary[1], 2))), 3);
-			$centroid_next3 = round(sqrt((pow(($value->recency - $e_recency[2]), 2)) + (pow($value->frequency - $e_frequecy[2], 2)) + (pow($value->monetary - $e_monetary[2], 2))), 3);
+			$centroid_next1 = round(sqrt((pow(($e_recency[0] - $value->recency), 2)) + (pow($e_frequecy[0] - $value->frequency, 2)) + (pow($e_monetary[0] - $value->monetary, 2))), 3);
+			$centroid_next2 = round(sqrt((pow(($e_recency[1] - $value->recency), 2)) + (pow($e_frequecy[1] - $value->frequency, 2)) + (pow($e_monetary[1] - $value->monetary, 2))), 3);
+			$centroid_next3 = round(sqrt((pow(($e_recency[2] - $value->recency), 2)) + (pow($e_frequecy[2] - $value->frequency, 2)) + (pow($e_monetary[2] - $value->monetary, 2))), 3);
 
-			if ($centroid1 >= $centroid_next1) {
-				$status = 0;
-			} else if ($centroid2 >= $centroid_next2) {
-				$status = 1;
-			} else if ($centroid3 >= $centroid_next3) {
-				$status = 2;
+			$min = min($centroid_next1, $centroid_next2, $centroid_next3);
+			// echo $min;
+			// echo '<br>';
+			if ($min == $centroid_next1) {
+				$status = '1';
+			} else if ($min == $centroid_next2) {
+				$status = '2';
+			} else if ($min == $centroid_next3) {
+				$status = '3';
 			}
 			$status_member = array(
 				'member' => $status

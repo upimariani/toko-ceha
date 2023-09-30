@@ -3,11 +3,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class mPelanggan extends CI_Model
 {
-	public function pelanggan()
+	public function pelanggan($date)
 	{
-		$this->db->select('*');
-		$this->db->from('konsumen');
-		return $this->db->get()->result();
+		return $this->db->query("SELECT COUNT(transaksi.id_transaksi) as frequency, DATEDIFF('" . $date . "', MAX(tgl_transaksi)) as recency, SUM(total_bayar) as monetary, transaksi.id_konsumen, nama_konsumen, member, no_hp_konsumen,alamat_konsumen FROM `transaksi` JOIN konsumen ON konsumen.id_konsumen=transaksi.id_konsumen GROUP BY transaksi.id_konsumen")->result();
 	}
 }
 

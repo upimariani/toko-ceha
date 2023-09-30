@@ -51,9 +51,11 @@
 
 										<td><?php
 											if ($value->member == '0') {
-												echo 'Non Member';
+												echo 'Clasic';
 											} else if ($value->member == '1') {
-												echo 'Member';
+												echo 'Silver';
+											} else {
+												echo 'Gold';
 											}
 											?></td>
 									</tr>

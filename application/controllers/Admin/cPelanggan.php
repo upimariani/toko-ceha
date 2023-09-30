@@ -10,8 +10,9 @@ class cPelanggan extends CI_Controller
 	}
 	public function index()
 	{
+		$date = date('Y-m-d');
 		$data = array(
-			'lap' => $this->mPelanggan->pelanggan()
+			'lap' => $this->mPelanggan->pelanggan($date)
 		);
 		$this->load->view('Admin/Layout/head');
 		$this->load->view('Admin/Layout/aside');
