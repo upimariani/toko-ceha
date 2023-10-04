@@ -77,10 +77,12 @@
 								<li class="mt-5">
 									<h5>Level Member <br><strong class="badge badge-warning">
 											<?php
-											if ($pelanggan->member == '0') {
-												echo 'Non Member';
-											} else if ($pelanggan->member == '1') {
-												echo 'Member';
+											if ($pelanggan->member == '1') {
+												echo 'Clasic';
+											} else if ($pelanggan->member == '2') {
+												echo 'Silver';
+											} else {
+												echo 'Gold';
 											}
 											?>
 										</strong></h5>

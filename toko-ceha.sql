@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Sep 2023 pada 12.51
--- Versi server: 10.4.6-MariaDB
--- Versi PHP: 7.3.9
+-- Generation Time: Oct 02, 2023 at 06:35 AM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `diskon`
+-- Table structure for table `diskon`
 --
 
 CREATE TABLE `diskon` (
@@ -37,7 +37,7 @@ CREATE TABLE `diskon` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `diskon`
+-- Dumping data for table `diskon`
 --
 
 INSERT INTO `diskon` (`id_diskon`, `id_produk`, `nama_diskon`, `besar_diskon`, `tgl_selesai`) VALUES
@@ -46,7 +46,7 @@ INSERT INTO `diskon` (`id_diskon`, `id_produk`, `nama_diskon`, `besar_diskon`, `
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `konsumen`
+-- Table structure for table `konsumen`
 --
 
 CREATE TABLE `konsumen` (
@@ -61,7 +61,7 @@ CREATE TABLE `konsumen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `konsumen`
+-- Dumping data for table `konsumen`
 --
 
 INSERT INTO `konsumen` (`id_konsumen`, `nama_konsumen`, `alamat_konsumen`, `no_hp_konsumen`, `email`, `username`, `password`, `member`) VALUES
@@ -269,7 +269,7 @@ INSERT INTO `konsumen` (`id_konsumen`, `nama_konsumen`, `alamat_konsumen`, `no_h
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ongkir`
+-- Table structure for table `ongkir`
 --
 
 CREATE TABLE `ongkir` (
@@ -279,7 +279,7 @@ CREATE TABLE `ongkir` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `ongkir`
+-- Dumping data for table `ongkir`
 --
 
 INSERT INTO `ongkir` (`id_kecamatan`, `nama_kecamatan`, `ongkir`) VALUES
@@ -320,7 +320,7 @@ INSERT INTO `ongkir` (`id_kecamatan`, `nama_kecamatan`, `ongkir`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pesanan`
+-- Table structure for table `pesanan`
 --
 
 CREATE TABLE `pesanan` (
@@ -331,7 +331,7 @@ CREATE TABLE `pesanan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `pesanan`
+-- Dumping data for table `pesanan`
 --
 
 INSERT INTO `pesanan` (`id_detail`, `id_transaksi`, `id_produk`, `quantity`) VALUES
@@ -539,7 +539,7 @@ INSERT INTO `pesanan` (`id_detail`, `id_transaksi`, `id_produk`, `quantity`) VAL
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `produk`
+-- Table structure for table `produk`
 --
 
 CREATE TABLE `produk` (
@@ -553,7 +553,7 @@ CREATE TABLE `produk` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `produk`
+-- Dumping data for table `produk`
 --
 
 INSERT INTO `produk` (`id_produk`, `nama_produk`, `deskripsi`, `harga`, `stok`, `keterangan`, `gambar`) VALUES
@@ -575,7 +575,7 @@ INSERT INTO `produk` (`id_produk`, `nama_produk`, `deskripsi`, `harga`, `stok`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `transaksi`
+-- Table structure for table `transaksi`
 --
 
 CREATE TABLE `transaksi` (
@@ -589,7 +589,7 @@ CREATE TABLE `transaksi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `transaksi`
+-- Dumping data for table `transaksi`
 --
 
 INSERT INTO `transaksi` (`id_transaksi`, `id_konsumen`, `id_kecamatan`, `tgl_transaksi`, `total_bayar`, `status_order`, `bukti_pembayaran`) VALUES
@@ -697,7 +697,7 @@ INSERT INTO `transaksi` (`id_transaksi`, `id_konsumen`, `id_kecamatan`, `tgl_tra
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -711,7 +711,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id_user`, `nama`, `alamat`, `no_hp`, `username`, `password`, `level_user`) VALUES
@@ -723,89 +723,89 @@ INSERT INTO `user` (`id_user`, `nama`, `alamat`, `no_hp`, `username`, `password`
 --
 
 --
--- Indeks untuk tabel `diskon`
+-- Indexes for table `diskon`
 --
 ALTER TABLE `diskon`
   ADD PRIMARY KEY (`id_diskon`);
 
 --
--- Indeks untuk tabel `konsumen`
+-- Indexes for table `konsumen`
 --
 ALTER TABLE `konsumen`
   ADD PRIMARY KEY (`id_konsumen`);
 
 --
--- Indeks untuk tabel `ongkir`
+-- Indexes for table `ongkir`
 --
 ALTER TABLE `ongkir`
   ADD PRIMARY KEY (`id_kecamatan`);
 
 --
--- Indeks untuk tabel `pesanan`
+-- Indexes for table `pesanan`
 --
 ALTER TABLE `pesanan`
   ADD PRIMARY KEY (`id_detail`);
 
 --
--- Indeks untuk tabel `produk`
+-- Indexes for table `produk`
 --
 ALTER TABLE `produk`
   ADD PRIMARY KEY (`id_produk`);
 
 --
--- Indeks untuk tabel `transaksi`
+-- Indexes for table `transaksi`
 --
 ALTER TABLE `transaksi`
   ADD PRIMARY KEY (`id_transaksi`);
 
 --
--- Indeks untuk tabel `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `diskon`
+-- AUTO_INCREMENT for table `diskon`
 --
 ALTER TABLE `diskon`
   MODIFY `id_diskon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `konsumen`
+-- AUTO_INCREMENT for table `konsumen`
 --
 ALTER TABLE `konsumen`
   MODIFY `id_konsumen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=201;
 
 --
--- AUTO_INCREMENT untuk tabel `ongkir`
+-- AUTO_INCREMENT for table `ongkir`
 --
 ALTER TABLE `ongkir`
   MODIFY `id_kecamatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
--- AUTO_INCREMENT untuk tabel `pesanan`
+-- AUTO_INCREMENT for table `pesanan`
 --
 ALTER TABLE `pesanan`
   MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=201;
 
 --
--- AUTO_INCREMENT untuk tabel `produk`
+-- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
   MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT untuk tabel `transaksi`
+-- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
   MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
--- AUTO_INCREMENT untuk tabel `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;

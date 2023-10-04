@@ -15,9 +15,9 @@
 		}
 		?>
 		<?php
-		$pelanggan_clasic = $this->db->query("SELECT COUNT(id_konsumen) as jml_clasic FROM `konsumen` WHERE member='0'")->row();
-		$pelanggan_silver = $this->db->query("SELECT COUNT(id_konsumen) as jml_silver FROM `konsumen` WHERE member='1'")->row();
-		$pelanggan_gold = $this->db->query("SELECT COUNT(id_konsumen) as jml_gold FROM `konsumen` WHERE member='2'")->row();
+		$pelanggan_clasic = $this->db->query("SELECT COUNT(id_konsumen) as jml_clasic FROM `konsumen` WHERE member='1'")->row();
+		$pelanggan_silver = $this->db->query("SELECT COUNT(id_konsumen) as jml_silver FROM `konsumen` WHERE member='2'")->row();
+		$pelanggan_gold = $this->db->query("SELECT COUNT(id_konsumen) as jml_gold FROM `konsumen` WHERE member='3'")->row();
 		?>
 		<!-- Basic Bootstrap Table -->
 		<div class="row">
@@ -99,9 +99,9 @@
 										<td><?= $value->frequency ?></td>
 										<td>Rp. <?= number_format($value->monetary)   ?></td>
 										<td><?php
-											if ($value->member == '2') {
+											if ($value->member == '3') {
 												echo ' <span class="badge bg-success">Gold</span>';
-											} else if ($value->member == '1') {
+											} else if ($value->member == '2') {
 												echo '<span class="badge bg-warning">Silver</span>';
 											} else {
 												echo '<span class="badge bg-info">Clasic</span>';

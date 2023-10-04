@@ -50,9 +50,9 @@
 										<td>Rp. <?= number_format($value->harga * $value->quantity) ?></td>
 
 										<td><?php
-											if ($value->member == '0') {
+											if ($value->member == '1') {
 												echo 'Clasic';
-											} else if ($value->member == '1') {
+											} else if ($value->member == '2') {
 												echo 'Silver';
 											} else {
 												echo 'Gold';

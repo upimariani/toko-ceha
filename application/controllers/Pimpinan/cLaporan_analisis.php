@@ -10,8 +10,9 @@ class cLaporan_analisis extends CI_Controller
 	}
 	public function index()
 	{
+		$date = date('Y-m-d');
 		$data = array(
-			'lap' => $this->mPelanggan->pelanggan()
+			'lap' => $this->mPelanggan->pelanggan($date)
 		);
 		$this->load->view('Pimpinan/Layout/head');
 		$this->load->view('Pimpinan/Layout/aside');
@@ -44,11 +45,13 @@ class cLaporan_analisis extends CI_Controller
 		$pdf->SetFont('Times', '', 10);
 		$no = 1;
 
-		$data = $this->mPelanggan->pelanggan();
+
+		$date = date('Y-m-d');
+		$data = $this->mPelanggan->pelanggan($date);
 		foreach ($data as $key => $value) {
-			if ($value->member == '2') {
+			if ($value->member == '3') {
 				$status = 'Gold';
-			} else if ($value->member == '1') {
+			} else if ($value->member == '2') {
 				$status = 'Silver';
 			} else {
 				$status = 'Clasic';
