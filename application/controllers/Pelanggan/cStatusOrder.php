@@ -66,31 +66,17 @@ class cStatusOrder extends CI_Controller
 		$var_frequency = array();
 		$var_monetary = array();
 		$date_in = date('Y-m-d');
+		$no = 1;
 		$variabel = $this->mAnalisis->variabel($date_in);
 		foreach ($variabel['all'] as $key => $value) {
 			$var_recency[] = $value->recency;
 			$var_frequency[] = $value->frequency;
 			$var_monetary[] = $value->monetary;
-			echo '<br>Recency: ' . $value->recency;
-			echo '<br>Frequency: ' . $value->frequency;
-			echo '<br>Monetary: ' . $value->monetary;
+			// echo '<br>' . $value->id_konsumen;
+			// echo '<br>' . $no++ . 'Recency: ' . $value->recency;
+			// echo '<br>Frequency: ' . $value->frequency;
+			// echo '<br>Monetary: ' . $value->monetary;
 		}
-
-		// // echo '<br>';
-		// $max_recency = max($var_recency);
-		// $max_frequency = max($var_frequency);
-		// $max_monetary = max($var_monetary);
-		// // echo $max_recency . '<br>';
-		// // echo $max_frequency . '<br>';
-		// // echo $max_monetary . '<br>';
-
-		// // echo '<br>';
-		// $rn = $var_recency[0] / $max_recency;
-		// $fn = $var_frequency[0] / $max_frequency;
-		// $mn = $var_monetary[0] / $max_monetary;
-		// // echo $var_recency[0] . '|' . $rn . '<br>';
-		// // echo $var_frequency[0] . '|' . $fn . '<br>';
-		// // echo $var_monetary[0] . '|' . $mn . '<br>';
 
 
 		//menentukan rumus euclidean Distance
@@ -103,33 +89,132 @@ class cStatusOrder extends CI_Controller
 			$e_monetary[] = $value->monetary;
 		}
 
-		// $centroid1 = round(sqrt((pow(($e_recency[1] - $e_recency[0]), 2)) + (pow($e_frequecy[1] - $e_frequecy[0], 2)) + (pow($e_monetary[1] - $e_monetary[0], 2))), 3);
-		// $centroid2 = round(sqrt((pow(($e_recency[0] - $e_recency[1]), 2)) + (pow($e_frequecy[0] - $e_frequecy[1], 2)) + (pow($e_monetary[0] - $e_monetary[1], 2))), 3);
-		// $centroid3 = round(sqrt((pow(($e_recency[2] - $e_recency[2]), 2)) + (pow($e_frequecy[0] - $e_frequecy[2], 2)) + (pow($e_monetary[0] - $e_monetary[2], 2))), 3);
-		// // echo '<br>' . $centroid1;
-		// // echo '<br>' . $centroid2;
+		echo '<br>';
 
+		$i1_recency = 0;
+		$i2_recency = 0;
+		$i3_recency = 0;
+		$i1_frequency = 0;
+		$i2_frequency = 0;
+		$i3_frequency = 0;
+		$i1_monetary = 0;
+		$i2_monetary = 0;
+		$i3_monetary = 0;
 
+		$jml_1 = 0;
+		$jml_2 = 0;
+		$jml_3 = 0;
 		foreach ($variabel['all'] as $key => $value) {
-			$centroid_next1 = round(sqrt((pow(($e_recency[0] - $value->recency), 2)) + (pow($e_frequecy[0] - $value->frequency, 2)) + (pow($e_monetary[0] - $value->monetary, 2))), 3);
-			$centroid_next2 = round(sqrt((pow(($e_recency[1] - $value->recency), 2)) + (pow($e_frequecy[1] - $value->frequency, 2)) + (pow($e_monetary[1] - $value->monetary, 2))), 3);
-			$centroid_next3 = round(sqrt((pow(($e_recency[2] - $value->recency), 2)) + (pow($e_frequecy[2] - $value->frequency, 2)) + (pow($e_monetary[2] - $value->monetary, 2))), 3);
+			$centroid_next1 = round(sqrt((pow(($value->recency - $e_recency[0]), 2)) + (pow($value->frequency - $e_frequecy[0], 2)) + (pow($value->monetary - $e_monetary[0], 2))), 3);
+			$centroid_next2 = round(sqrt((pow(($value->recency - $e_recency[1]), 2)) + (pow($value->frequency - $e_frequecy[1], 2)) + (pow($value->monetary - $e_monetary[1], 2))), 3);
+			$centroid_next3 = round(sqrt((pow(($value->recency - $e_recency[2]), 2)) + (pow($value->frequency - $e_frequecy[2], 2)) + (pow($value->monetary - $e_monetary[2], 2))), 3);
 
 			$min = min($centroid_next1, $centroid_next2, $centroid_next3);
+			$nilai_terdekat[] = $min;
 			// echo $min;
 			// echo '<br>';
 			if ($min == $centroid_next1) {
 				$status = '1';
+				$i1_recency += $value->recency;
+				$i1_frequency += $value->frequency;
+				$i1_monetary += $value->monetary;
+
+				$jml_1 += 1;
+
+				// echo $n++ . '|' . $value->recency;
+				// echo $value->id_konsumen;
+				// echo '<br>';
 			} else if ($min == $centroid_next2) {
 				$status = '2';
+				$i2_recency += $value->recency;
+				$i2_frequency += $value->frequency;
+				$i2_monetary += $value->monetary;
+
+				$jml_2 += 1;
+				// echo $o++ . '|' . $value->recency;
+				// echo $value->id_konsumen;
+				// echo '<br>';
 			} else if ($min == $centroid_next3) {
 				$status = '3';
+				$i3_recency += $value->recency;
+				$i3_frequency += $value->frequency;
+				$i3_monetary += $value->monetary;
+
+				$jml_3 += 1;
+				// echo $n++ . '|' . $value->recency;
+				// echo $value->id_konsumen;
+				// echo '<br>';
 			}
+			// echo $status;
 			$status_member = array(
 				'member' => $status
 			);
 			$this->db->where('id_konsumen', $value->id_konsumen);
 			$this->db->update('konsumen', $status_member);
+		}
+
+		//variabel baruu -----------------------------------------------------
+		$var_bar_recency1 = round($i1_recency / $jml_1, 2);
+		$var_bar_recency2 = round($i1_frequency / $jml_1, 2);
+		$var_bar_recency3 = round($i1_monetary / $jml_1, 2);
+
+		$var_bar_frequency1 = round($i2_recency / $jml_2, 2);
+		$var_bar_frequency2 = round($i2_frequency / $jml_2, 2);
+		$var_bar_frequency3 = round($i2_monetary / $jml_2, 2);
+
+		$var_bar_monetary1 = round($i3_recency / $jml_3, 2);;
+		$var_bar_monetary2 = round($i3_frequency / $jml_3, 2);;
+		$var_bar_monetary3 = round($i3_monetary / $jml_3, 2);;
+
+
+
+		// echo '---------------------------------------<br>';
+		//nilai bcv
+		for ($bcv = 0; $bcv < sizeof($e_recency); $bcv++) {
+			// echo $e_recency[$bcv];
+			// echo $e_frequecy[$bcv];
+			// echo $e_monetary[$bcv];
+			// echo '<br>';
+		}
+		$d1 = sqrt((pow($e_recency[0] - $e_recency[1], 2)) + (pow($e_frequecy[0] - $e_frequecy[1], 2)) + (pow($e_monetary[0] - $e_monetary[1], 2)));
+		$d2 = sqrt((pow($e_recency[0] - $e_recency[2], 2)) + (pow($e_frequecy[0] - $e_frequecy[2], 2)) + (pow($e_monetary[0] - $e_monetary[2], 2)));
+		$d3 = sqrt((pow($e_recency[1] - $e_recency[2], 2)) + (pow($e_frequecy[1] - $e_frequecy[2], 2)) + (pow($e_monetary[1] - $e_monetary[2], 2)));
+
+		$bcv = round($d1 + $d2 + $d3);
+		// echo 'Nilai Bcv: ' . $bcv;
+		// echo '<br>';
+
+		$nilai_wcv = 0;
+		for ($kuadrat = 0; $kuadrat < sizeof($nilai_terdekat); $kuadrat++) {
+			$nilai_wcv += round((pow($nilai_terdekat[$kuadrat], 2)));
+		}
+		// echo 'Nilai WCV ' . $nilai_wcv;
+		echo '<br>';
+
+		$ratio = round($bcv / $nilai_wcv);
+		// echo 'Nilai Ratio:' . $ratio;
+
+		//iterasi --------------------------------------------------------------
+
+		foreach ($variabel['all'] as $key => $value) {
+			$centroid_iterasi11 = round(sqrt((pow(($value->recency - $var_bar_recency1), 2)) + (pow($value->frequency - $var_bar_frequency1, 2)) + (pow($value->monetary - 	$var_bar_monetary1, 2))), 3);
+			$centroid_iterasi12 = round(sqrt((pow(($value->recency - $var_bar_recency2), 2)) + (pow($value->frequency - $var_bar_frequency2, 2)) + (pow($value->monetary - 	$var_bar_monetary2, 2))), 3);
+			$centroid_iterasi13 = round(sqrt((pow(($value->recency - $var_bar_recency3), 2)) + (pow($value->frequency - $var_bar_frequency3, 2)) + (pow($value->monetary - 	$var_bar_monetary3, 2))), 3);
+
+
+			$min1 = min($centroid_iterasi11, $centroid_iterasi12, $centroid_iterasi13);
+			$nilai_terdekat1[] = $min1;
+			// echo $min;
+			// echo '<br>';
+			if ($min1 == $centroid_iterasi11) {
+				$status1 = '1';
+			} else if ($min1 == $centroid_iterasi12) {
+				$status1 = '2';
+			} else if ($min1 == $centroid_iterasi13) {
+				$status1 = '3';
+			}
+
+			// echo  $status1;
 		}
 
 		$status_order = array(

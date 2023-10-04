@@ -399,6 +399,9 @@
 	$(document).ready(function() {
 		$('#myTable').DataTable();
 	})
+	$(document).ready(function() {
+		$('.myTable').DataTable();
+	})
 </script>
 <script>
 	console.log = function() {}

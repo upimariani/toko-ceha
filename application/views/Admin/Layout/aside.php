@@ -80,6 +80,14 @@
 							<div data-i18n="Basic">Pelanggan</div>
 						</a>
 					</li>
+					<li class="menu-item <?php if ($this->uri->segment(1) == 'Admin' && $this->uri->segment(2) == 'cLaporan_transaksi') {
+												echo 'active';
+											}  ?>">
+						<a href="<?= base_url('Admin/cLaporan_transaksi') ?>" class="menu-link">
+							<i class='menu-icon bx bxs-chart'></i>
+							<div data-i18n="Basic">Laporan Transaksi</div>
+						</a>
+					</li>
 					<li class="menu-header small text-uppercase">
 						<span class="menu-header-text">PRODUK</span>
 					</li>
@@ -164,7 +172,18 @@
 						</a>
 					</li> -->
 
+					<!-- Forms & Tables -->
+					<li class="menu-header small text-uppercase"><span class="menu-header-text">Analisis</span></li>
+					<!-- Forms -->
 
+					<!-- Tables -->
+					<li class="menu-item">
+						<a href="<?= base_url('Admin/cViewAnalisis') ?>" class="menu-link">
+							<i class='menu-icon tf-icons bx bx-book'></i>
+							<div data-i18n="Tables">View Analisis</div>
+						</a>
+					</li>
+					<!-- Misc -->
 
 					<!-- Forms & Tables -->
 					<li class="menu-header small text-uppercase"><span class="menu-header-text">LogOut</span></li>
