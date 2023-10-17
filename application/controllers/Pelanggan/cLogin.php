@@ -30,7 +30,7 @@ class cLogin extends CI_Controller
 				$alamat = $data->alamat_konsumen;
 				$array = array(
 					'id' => $id,
-					'member' => $member,
+					'member_pelanggan' => $member,
 					'nama' => $nm_pel,
 					'alamat' => $alamat
 				);

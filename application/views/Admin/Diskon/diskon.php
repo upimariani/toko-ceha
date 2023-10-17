@@ -29,6 +29,7 @@
 							<th>Nama Diskon</th>
 							<th>Besar Diskon</th>
 							<th>Tanggal Selesai</th>
+							<th>Level Member</th>
 							<th>Actions</th>
 						</tr>
 					</thead>
@@ -41,8 +42,16 @@
 								<td>Rp. <?= number_format($value->harga, 0) ?></td>
 								<td><?= $value->nama_diskon ?></td>
 								<td><?= $value->besar_diskon ?>%</td>
-
 								<td><?= $value->tgl_selesai ?></td>
+								<td><?php
+									if ($value->member == '3') {
+										echo ' <span class="badge bg-success">Gold</span>';
+									} else if ($value->member == '2') {
+										echo '<span class="badge bg-warning">Silver</span>';
+									} else {
+										echo '<span class="badge bg-info">Clasic</span>';
+									}
+									?></td>
 
 								<td>
 									<div class="dropdown">

@@ -39,7 +39,7 @@
 										<form action="<?= base_url('Pelanggan/cCart/add_cart') ?>" method="POST">
 											<input type="hidden" name="name" value="<?= $value->nama_produk ?>">
 											<input type="hidden" name="id" value="<?= $value->id_produk ?>">
-											<input type="hidden" name="price" value="<?= $value->harga - ($value->harga * $value->besar_diskon / 100) ?>">
+
 											<input type="hidden" name="stok" value="<?= $value->stok ?>">
 											<input type="hidden" name="picture" value="<?= $value->gambar ?>">
 											<input type="hidden" name="qty" value="1">
@@ -53,7 +53,21 @@
 												<div class="product-content">
 													<h3><a href="#"><?= $value->nama_produk ?></a></h3>
 													<div class="product-price">
-														<span>Rp. <?= number_format($value->harga - ($value->harga * $value->besar_diskon / 100)) ?></span>
+														<?php
+														if ($this->session->userdata('member_pelanggan') == $value->member) {
+														?>
+															<span>Rp. <?= number_format($value->harga - ($value->harga * $value->besar_diskon / 100)) ?></span>
+															<del>Rp. <?= number_format($value->harga) ?></del>
+															<input type="hidden" name="price" value="<?= $value->harga - ($value->harga * $value->besar_diskon / 100) ?>">
+														<?php
+														} else {
+														?>
+															<span>Rp. <?= number_format($value->harga) ?></span>
+															<input type="hidden" name="price" value="<?= $value->harga ?>">
+														<?php
+														}
+														?>
+
 													</div>
 													<button type="submit" class="btn mt-3">Add To Cart</button>
 												</div>

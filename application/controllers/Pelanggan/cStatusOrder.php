@@ -189,7 +189,7 @@ class cStatusOrder extends CI_Controller
 			$nilai_wcv += round((pow($nilai_terdekat[$kuadrat], 2)));
 		}
 		// echo 'Nilai WCV ' . $nilai_wcv;
-		echo '<br>';
+		// echo '<br>';
 
 		$ratio = round($bcv / $nilai_wcv);
 		// echo 'Nilai Ratio:' . $ratio;

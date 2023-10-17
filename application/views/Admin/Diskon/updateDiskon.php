@@ -55,6 +55,21 @@
 								<?= form_error('tgl', '<div id="defaultFormControlHelp" class="form-text">', '</div>') ?>
 							</div>
 							<hr>
+							<div class="input-group">
+								<select name="level_member" class="form-control">
+									<option value="">Choose level member...</option>
+									<option value="1" <?php if ($diskon->member == '1') {
+															echo 'selected';
+														} ?>>Clasic</option>
+									<option value="2" <?php if ($diskon->member == '2') {
+															echo 'selected';
+														} ?>>Silver</option>
+									<option value="3" <?php if ($diskon->member == '3') {
+															echo 'selected';
+														} ?>>Gold</option>
+								</select>
+							</div>
+							<?= form_error('level_member', '<div id="defaultFormControlHelp" class="form-text">', '</div>') ?>
 
 							<button type="submit" class="btn btn-success mb-3"><i class='bx bx-save'></i>Update</button>
 						</div>

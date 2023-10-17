@@ -31,6 +31,7 @@ class cDiskon extends CI_Controller
 		$this->form_validation->set_rules('nama_diskon', 'Nama Diskon', 'required');
 		$this->form_validation->set_rules('diskon', 'Besar Diskon', 'required');
 		$this->form_validation->set_rules('tgl', 'Tanggal Selesai', 'required');
+		$this->form_validation->set_rules('level_member', 'Level Member', 'required');
 
 		if ($this->form_validation->run() == FALSE) {
 			$data = array(
@@ -46,7 +47,8 @@ class cDiskon extends CI_Controller
 				'id_produk' => $this->input->post('produk'),
 				'nama_diskon' => $this->input->post('nama_diskon'),
 				'tgl_selesai' => $this->input->post('tgl'),
-				'besar_diskon' => $this->input->post('diskon')
+				'besar_diskon' => $this->input->post('diskon'),
+				'member' => $this->input->post('level_member')
 			);
 			$this->mDiskon->insert($data);
 			$this->session->set_flashdata('success', 'Data Diskon Berhasil Ditambahkan!');
@@ -60,6 +62,7 @@ class cDiskon extends CI_Controller
 		$this->form_validation->set_rules('nama_diskon', 'Nama Diskon', 'required');
 		$this->form_validation->set_rules('diskon', 'Besar Diskon', 'required');
 		$this->form_validation->set_rules('tgl', 'Tanggal Selesai', 'required');
+		$this->form_validation->set_rules('level_member', 'Level Member', 'required');
 
 		if ($this->form_validation->run() == FALSE) {
 			$data = array(
@@ -76,7 +79,8 @@ class cDiskon extends CI_Controller
 				'id_produk' => $this->input->post('produk'),
 				'nama_diskon' => $this->input->post('nama_diskon'),
 				'tgl_selesai' => $this->input->post('tgl'),
-				'besar_diskon' => $this->input->post('diskon')
+				'besar_diskon' => $this->input->post('diskon'),
+				'member' => $this->input->post('level_member')
 			);
 			$this->mDiskon->update($id, $data);
 			$this->session->set_flashdata('success', 'Data Diskon Berhasil Ditambahkan!');

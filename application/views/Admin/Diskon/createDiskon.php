@@ -12,6 +12,7 @@
 					<div class="card mb-4">
 						<h5 class="card-header">Data Diskon</h5>
 						<div class="card-body demo-vertical-spacing demo-only-element">
+
 							<div class="input-group">
 								<select id="produk-diskon" name="produk" class="form-control">
 									<option value="">Choose this product...</option>
@@ -54,6 +55,15 @@
 								</div>
 								<?= form_error('tgl', '<div id="defaultFormControlHelp" class="form-text">', '</div>') ?>
 							</div>
+							<div class="input-group">
+								<select name="level_member" class="form-control">
+									<option value="">Choose level member...</option>
+									<option value="1">Clasic</option>
+									<option value="2">Silver</option>
+									<option value="3">Gold</option>
+								</select>
+							</div>
+							<?= form_error('level_member', '<div id="defaultFormControlHelp" class="form-text">', '</div>') ?>
 							<button type="submit" class="btn btn-success mb-3"><i class='bx bx-save'></i>Save</button>
 						</div>
 					</div>

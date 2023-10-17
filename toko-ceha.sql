@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Okt 2023 pada 16.32
+-- Waktu pembuatan: 04 Okt 2023 pada 18.00
 -- Versi server: 10.4.6-MariaDB
 -- Versi PHP: 7.3.9
 
@@ -33,15 +33,17 @@ CREATE TABLE `diskon` (
   `id_produk` int(10) NOT NULL,
   `nama_diskon` varchar(20) NOT NULL,
   `besar_diskon` int(11) NOT NULL,
-  `tgl_selesai` varchar(20) NOT NULL
+  `tgl_selesai` varchar(20) NOT NULL,
+  `member` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `diskon`
 --
 
-INSERT INTO `diskon` (`id_diskon`, `id_produk`, `nama_diskon`, `besar_diskon`, `tgl_selesai`) VALUES
-(1, 1, 'sale of day', 10, '2023-08-30');
+INSERT INTO `diskon` (`id_diskon`, `id_produk`, `nama_diskon`, `besar_diskon`, `tgl_selesai`, `member`) VALUES
+(1, 1, 'sale of day', 10, '2023-08-30', 3),
+(2, 2, 'sale of day', 5, '2023-10-30', 2);
 
 -- --------------------------------------------------------
 
@@ -775,7 +777,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `diskon`
 --
 ALTER TABLE `diskon`
-  MODIFY `id_diskon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_diskon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `konsumen`
